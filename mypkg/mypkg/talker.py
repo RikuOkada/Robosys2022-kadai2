@@ -9,7 +9,6 @@ rclpy.init()
 node = Node("talker")
 pub = node.create_publisher(Int16, "countup", 10)
 n = 0
-node.create_timer(0.5, self.cb)
                                             
 def cb():
     global n
@@ -18,6 +17,5 @@ def cb():
     pub.publish(msg)
     n += 1
 
-node = Node("talker")
-talker = Talker(node)
+node.create_timer(0.5, cb)
 rclpy.spin(node)
