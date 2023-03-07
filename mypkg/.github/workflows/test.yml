@@ -1,15 +1,15 @@
-name: test
+me: test
 on: push
 jobs:
   teat:
     runs-on: ubuntu-22.04
     container: ryuichiueda/ubuntu22.04-ros2:latest
-    step:
+    steps:
       - uses: actions/checkout@v2
       - name: build and test
         run: |
           rsync -av ./ /root/ros2_ws/src/Robosys-kadai2/mypkg/
           cd /root/ros2_ws
           rosdep update
-          rosdep install -i --from-path src --rosditro humble -y
+          rosdep install -i --from-path src --rosdistro humble -y
           bash -xv ./src/Robosys-kadai2/mypkg/test/test.bash /root
